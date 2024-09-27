@@ -96,16 +96,9 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   setTimer(0, 100);
-  setTimerDot(100);
   int status = 0;
   while (1)
   {
-	  if(timerDot_flag == 1){
-		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
-		  if(1){
-			  setTimerDot(100);
-		  }
-	  }
 	  if(timer_flag[0] == 1){
 		  switch (status) {
 			case 0:
