@@ -22,7 +22,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "software_timer.h"
+#include "hamPhu.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,8 +95,48 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  setTimer(0, 100);
+  setTimerDot(100);
+  int status = 0;
   while (1)
   {
+	  if(timerDot_flag == 1){
+		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		  if(1){
+			  setTimerDot(100);
+		  }
+	  }
+	  if(timer_flag[0] == 1){
+		  switch (status) {
+			case 0:
+				display7SEG(1);
+				HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, RESET);
+				HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, SET);
+				HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+				HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+
+				if(1){
+					status = 1;
+				}
+				break;
+			case 1:
+				display7SEG(2);
+				HAL_GPIO_WritePin(EN0_GPIO_Port, EN0_Pin, SET);
+				HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, RESET);
+				HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, SET);
+				HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, SET);
+
+				if(1){
+					status = 0;
+				}
+				break;
+			default:
+				break;
+		}
+		  if(1){
+			  setTimer(0, 100);
+		  }
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -226,7 +267,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
-
+	timerRun();
 }
 /* USER CODE END 4 */
 

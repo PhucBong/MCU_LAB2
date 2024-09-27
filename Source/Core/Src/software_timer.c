@@ -29,7 +29,7 @@ void timerRun(){
 		}
 	}
 
-	if(timer_flag[0] > 0){
+	if(timer_counter[0] > 0){
 		timer_counter[0]--;
 		if (timer_counter[0] <= 0){
 			timer_flag[0] = 1;
