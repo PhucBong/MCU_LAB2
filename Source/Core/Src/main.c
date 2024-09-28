@@ -22,7 +22,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "hamPhu.h"
+#include "software_timer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,8 +95,61 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int hour = 15, minute = 8, second = 50;
+  int index = 0;
+  void updateClockBuffer(){
+	  int num1, num2, num3, num4;
+	  if(hour < 10){
+		  num1 = 0;
+		  num2 = hour;
+		  led_buffer[0] = num1;
+		  led_buffer[1] = num2;
+	  }
+	  if(hour >= 10){
+		  num1 = hour / 10;
+		  num2 = hour % 10;
+		  led_buffer[0] = num1;
+		  led_buffer[1] = num2;
+	  }
+	  if(minute < 10){
+		  num3 = 0;
+		  num4 = minute;
+		  led_buffer[2] = num3;
+		  led_buffer[3] = num4;
+	  }
+	  if(minute >= 10){
+		  num3 = minute / 10;
+		  num4 = minute % 10;
+		  led_buffer[2] = num3;
+		  led_buffer[3] = num4;
+	  }
+	  if (index > 3) index = 0;
+	  update7SEG(index++);
+  }
+  setTimerDot(1000);
+  setTimer(0, 1000);
   while (1)
   {
+	  if(timerDot_flag == 1){
+		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		  setTimerDot(1000);
+	  }
+	  if(timer_flag[0] == 1){
+		  second++;
+		  if(second >= 60){
+			  second = 0;
+			  minute++;
+		  }
+		  if(minute >= 60){
+			  minute = 0;
+			  hour++;
+		  }
+		  if(hour >= 24){
+			  hour = 0;
+		  }
+		  updateClockBuffer();
+		  setTimer(0, 1000);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -226,7 +280,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
-
+	timerRun();
 }
 /* USER CODE END 4 */
 
