@@ -22,7 +22,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "hamPhu.h"
+#include "software_timer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,8 +95,24 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  setTimerDot(100);
+  setTimer(0, 100);
+  int index = 0;
   while (1)
   {
+	  if(timerDot_flag == 1){
+		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		  if(1){
+			  setTimerDot(100);
+		  }
+	  }
+	  if(timer_flag[0] == 1){
+		  if(index > 3) index = 0;
+		  update7SEG(index++);
+		  if(1){
+			  setTimer(0, 100);
+		  }
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -226,7 +243,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
-
+	timerRun();
 }
 /* USER CODE END 4 */
 
