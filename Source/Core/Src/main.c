@@ -22,7 +22,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "software_timer.h"
+#include "hamPhu.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,8 +95,54 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  int hour = 15, minute = 8, second = 50;
+  int index = 0;
+  void updateClockBuffer(){
+  	int num1, num2, num3, num4;
+  	if (hour < 10){
+  		num1 = 0;
+  		num2 = hour;
+  		led_buffer[0] = num1;
+  		led_buffer[1] = num2;
+  	}
+  	if (hour >= 10){
+  		num1 = hour / 10;
+  		num2 = hour % 10;
+  		led_buffer[0] = num1;
+  		led_buffer[1] = num2;
+  	}
+
+  	if(minute < 10){
+  		num3 = 0;
+  		num4 = minute;
+  		led_buffer[2] = num3;
+  		led_buffer[3] = num4;
+  	}
+  	if(minute >= 10){
+  		num3 = minute / 10;
+  		num4 = minute % 10;
+  		led_buffer[2] = num3;
+  		led_buffer[3] = num4;
+  	}
+  	if(index > 3) index = 0;
+  	update7SEG(index++);
+  }
   while (1)
   {
+	  second++;
+	  if(second >= 60){
+		  second = 0;
+		  minute++;
+	  }
+	  if(minute >= 60){
+		  minute = 0;
+		  hour++;
+	  }
+	  if(hour >= 24){
+		  hour = 0;
+	  }
+	  updateClockBuffer();
+	  HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
