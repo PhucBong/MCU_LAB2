@@ -187,7 +187,7 @@ void updateLEDMatrix(int index){
  80001fa:	b082      	sub	sp, #8
  80001fc:	af00      	add	r7, sp, #0
  80001fe:	6078      	str	r0, [r7, #4]
-	  initRow();
+	  initRow(); // tat het cac row
  8000200:	f7ff ffa4 	bl	800014c <initRow>
  8000204:	687b      	ldr	r3, [r7, #4]
  8000206:	2b07      	cmp	r3, #7
@@ -409,8 +409,8 @@ int main(void)
  800036e:	4618      	mov	r0, r3
  8000370:	f7ff ff42 	bl	80001f8 <updateLEDMatrix>
 
-		  setTimer(0, 50);
- 8000374:	2132      	movs	r1, #50	; 0x32
+		  setTimer(0, 15);
+ 8000374:	210f      	movs	r1, #15
  8000376:	2000      	movs	r0, #0
  8000378:	f000 f8f4 	bl	8000564 <setTimer>
 	  if(timer_flag[0] == 1){

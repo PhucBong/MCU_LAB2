@@ -104,7 +104,7 @@ int main(void)
 		  if (index_led_matrix > MAX_LED_MATRIX - 1) index_led_matrix = 0;
 		  updateLEDMatrix(index_led_matrix++);
 
-		  setTimer(0, 50);
+		  setTimer(0, 15);
 	  }
     /* USER CODE END WHILE */
 

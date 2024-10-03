@@ -128,7 +128,7 @@ void displayLEDMatrix(uint8_t value){
 uint8_t matrix_buffer[8] = {0x3c,0x7e,0xc3,0xff,0xff,0xc3,0xc3,0xc3}; // gan cho cot
 
 void updateLEDMatrix(int index){
-	  initRow();
+	  initRow(); // tat het cac row
 	  switch (index) {
 		case 0:
 			HAL_GPIO_WritePin(ROW0_GPIO_Port, ROW0_Pin, RESET);
