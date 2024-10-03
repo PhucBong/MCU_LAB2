@@ -22,7 +22,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "hamPhu.h"
+#include "software_timer.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,8 +95,15 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  //const int MAX_LED_MATRIX = 8;
+  //int led_matrix_index = 7;
+  setTimer(0, 50);
   while (1)
   {
+	  if(timer_flag[0] == 1){
+		  chayChu();
+		  setTimer(0, 50);
+	  }
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -238,7 +246,7 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim ){
-
+	timerRun();
 }
 /* USER CODE END 4 */
 
