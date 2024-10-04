@@ -9,9 +9,14 @@
 #define INC_HAMPHU_H_
 #include "main.h"
 
+extern uint8_t led_animation[];
+extern uint8_t matrix_buffer[];
+
 void display7SEG(int num);
 void initCol();
 void updateLEDMatrix(int index);
 void displayLEDMatrix(uint8_t value);
-void chayChu();
+
+
+
 #endif /* INC_HAMPHU_H_ */

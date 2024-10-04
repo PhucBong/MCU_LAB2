@@ -124,57 +124,7 @@ void displayLEDMatrix(uint8_t value){
 		}
 	}
 }
-uint8_t matrix_buffer[8] = {0xff, 0xc0, 0x80, 0x37, 0x37, 0x80, 0xc0, 0xff};
-uint8_t led_animation[8] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
-void updateLEDMatrix(int index){
-	initCol(); // tat het tat cac cot
-	switch (index) {
-		case 0:
-			HAL_GPIO_WritePin(GPIOA, ENM0_Pin, RESET); // mo cot dau tien
-			displayLEDMatrix(led_animation[index]);
-			break;
-		case 1:
-			HAL_GPIO_WritePin(GPIOA, ENM1_Pin, RESET);
-			displayLEDMatrix(led_animation[index]);
-			break;
-		case 2:
-			HAL_GPIO_WritePin(GPIOA, ENM2_Pin, RESET);
-			displayLEDMatrix(led_animation[index]);
-			break;
-		case 3:
-			HAL_GPIO_WritePin(GPIOA, ENM3_Pin, RESET);
-			displayLEDMatrix(led_animation[index]);
-			break;
-		case 4:
-			HAL_GPIO_WritePin(GPIOA, ENM4_Pin, RESET);
-			displayLEDMatrix(led_animation[index]);
-			break;
-		case 5:
-			HAL_GPIO_WritePin(GPIOA, ENM5_Pin, RESET);
-			displayLEDMatrix(led_animation[index]);
-			break;
-		case 6:
-			HAL_GPIO_WritePin(GPIOA, ENM6_Pin, RESET);
-			displayLEDMatrix(led_animation[index]);
-			break;
-		case 7:
-			HAL_GPIO_WritePin(GPIOA, ENM7_Pin, RESET);
-			displayLEDMatrix(led_animation[index]);
-			break;
-		default:
-			break;
-	}
-}
-void chayChu(){
-	for(int u = 0; u < 8; u++){
-		for (int i = 0; i < 7; i++){
-			led_animation[i] = led_animation[i+1];
-		}
-		led_animation[7] = matrix_buffer[u];
-		for (int i = 7 ; i >= 0; i--){
-			updateLEDMatrix(i);
-			HAL_Delay(10);
-		}
-	}
+//uint8_t matrix_buffer[8] = {0xff, 0xc0, 0x80, 0x37, 0x37, 0x80, 0xc0, 0xff};
+//uint8_t led_animation[8] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 
-}
+

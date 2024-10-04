@@ -95,15 +95,78 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  uint8_t matrix_buffer[8] = {0xff, 0xc0, 0x80, 0x37, 0x37, 0x80, 0xc0, 0xff};
+  uint8_t led_animation[8] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
+  void updateLEDMatrix(int index){
+  	initCol(); // tat het tat cac cot
+  	switch (index) {
+  		case 0:
+  			HAL_GPIO_WritePin(GPIOA, ENM0_Pin, RESET); // mo cot dau tien
+  			displayLEDMatrix(led_animation[index]);
+  			break;
+  		case 1:
+  			HAL_GPIO_WritePin(GPIOA, ENM1_Pin, RESET);
+  			displayLEDMatrix(led_animation[index]);
+  			break;
+  		case 2:
+  			HAL_GPIO_WritePin(GPIOA, ENM2_Pin, RESET);
+  			displayLEDMatrix(led_animation[index]);
+  			break;
+  		case 3:
+  			HAL_GPIO_WritePin(GPIOA, ENM3_Pin, RESET);
+  			displayLEDMatrix(led_animation[index]);
+  			break;
+  		case 4:
+  			HAL_GPIO_WritePin(GPIOA, ENM4_Pin, RESET);
+  			displayLEDMatrix(led_animation[index]);
+  			break;
+  		case 5:
+  			HAL_GPIO_WritePin(GPIOA, ENM5_Pin, RESET);
+  			displayLEDMatrix(led_animation[index]);
+  			break;
+  		case 6:
+  			HAL_GPIO_WritePin(GPIOA, ENM6_Pin, RESET);
+  			displayLEDMatrix(led_animation[index]);
+  			break;
+  		case 7:
+  			HAL_GPIO_WritePin(GPIOA, ENM7_Pin, RESET);
+  			displayLEDMatrix(led_animation[index]);
+  			break;
+  		default:
+  			break;
+  	}
+  }
   //const int MAX_LED_MATRIX = 8;
-  //int led_matrix_index = 7;
+  int led_matrix_index = 7;
+  int flag = 0;
+  int u = 0;
+  setTimer(1, 25);
   setTimer(0, 50);
+
+
   while (1)
   {
-	  if(timer_flag[0] == 1){
-		  chayChu();
-		  setTimer(0, 50);
+	  if(timer_flag[0] == 1 && flag == 1){
+
+		for (int i = 0; i < 7; i++){
+			led_animation[i] = led_animation[i+1];
+		}
+		if(u > 7) u = 0;
+		led_animation[7] = matrix_buffer[u++];
+
+		flag = 0;
+		setTimer(0, 50);
 	  }
+
+	  if(timer_flag[1] == 1){
+		 if(led_matrix_index < 0){
+			 led_matrix_index = 7;
+			 flag = 1;
+		 }
+		 updateLEDMatrix(led_matrix_index--);
+		 setTimer(1,40);
+	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

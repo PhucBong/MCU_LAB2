@@ -36,4 +36,11 @@ void timerRun(){
 			timer_flag[0] = 1;
 		}
 	}
+
+	if(timer_counter[1] > 0){
+		timer_counter[1]--;
+		if (timer_counter[1] <= 0){
+			timer_flag[1] = 1;
+		}
+	}
 }

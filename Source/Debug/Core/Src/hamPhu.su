@@ -1,5 +1,3 @@
 hamPhu.c:10:6:display7SEG	16	static
 hamPhu.c:107:6:initCol	8	static
 hamPhu.c:110:6:displayLEDMatrix	24	static
-hamPhu.c:129:6:updateLEDMatrix	16	static
-hamPhu.c:168:6:chayChu	24	static
