@@ -95,7 +95,7 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  setTimer(0, 100);
+  setTimer(0, 50);
   int status = 0;
   while (1)
   {
@@ -127,7 +127,7 @@ int main(void)
 				break;
 		}
 		  if(1){
-			  setTimer(0, 100);
+			  setTimer(0, 50);
 		  }
 	  }
     /* USER CODE END WHILE */
