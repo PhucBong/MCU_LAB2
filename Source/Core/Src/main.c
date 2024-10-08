@@ -110,7 +110,7 @@ int main(void)
 		  if(index > 3) index = 0;
 		  update7SEG(index++);
 		  if(1){
-			  setTimer(0, 100);
+			  setTimer(0, 25);
 		  }
 	  }
     /* USER CODE END WHILE */
