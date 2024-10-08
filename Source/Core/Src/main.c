@@ -96,7 +96,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   setTimerDot(100);
-  setTimer(0, 100);
+  setTimer(0, 25);
   int index = 0;
   while (1)
   {
